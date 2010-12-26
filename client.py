@@ -22,11 +22,11 @@ class WebcamArchiveClient(AuthenticatedMethod):
 	return_status = WebcamArchive
 
 def main(*args):
-	if len(args) != 2:
+	try:
+		image = args[1]
+	except IndexError:
 		sys.stderr.write('Please provide an image name.')
 		return 1
-	
-	image = args[1]
 	
 	if not os.path.exists(image):
 		sys.stderr.write('The file provided does not exist.')
