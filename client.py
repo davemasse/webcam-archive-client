@@ -17,7 +17,7 @@ class WebcamArchive(WordPressBase):
 		return self.status
 
 class WebcamArchiveClient(AuthenticatedMethod):
-	method_name = 'webcamarchive.test'
+	method_name = 'webcamarchive.upload'
 	method_args = ('image',)
 	return_status = WebcamArchive
 
