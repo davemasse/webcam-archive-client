@@ -1,1 +1,2 @@
 -e git://github.com/maxcutler/python-wordpress-xmlrpc.git@4196b423a15b84713c80cbddd6a3df6493f8c76a#egg=wordpress_xmlrpc-1.1-py2.6-dev
+simplejson
