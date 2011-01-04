@@ -1,2 +1,2 @@
-*.pyc
-settings.py
+python/*.pyc
+python/settings.py
