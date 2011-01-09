@@ -4,6 +4,8 @@ This sample client provides an example of how a webcam image and associated meta
 
 ## Python Client ##
 
+Copy settings_example.py to settings.py and modify as necessary.
+
 ### Usage ###
 
 client.py path/to/image.jpg [json_meta_dict]
