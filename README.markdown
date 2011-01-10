@@ -8,7 +8,7 @@ Copy settings_example.py to settings.py and modify as necessary.
 
 ### Usage ###
 
-client.py path/to/image.jpg [json_meta_dict]
+client.py -f path/to/image.jpg [-d json_meta_dict] [-v]
 
 ### Parameters ###
 
