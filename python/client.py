@@ -41,8 +41,12 @@ def main():
 			# Check for Python dictionary
 			if type(pickle.loads(options.meta)) == type(dict()):
 				meta = pickle.loads(options.meta)
+		except:
+			pass
+		
+		try:
 			# Check for JSON-encoded string
-			else:
+			if 'meta' not in locals():
 				meta = simplejson.loads(options.meta)
 		except:
 			sys.stderr.write('Please provide meta information in a valid Python dictionary or JSON format.\n')
@@ -62,7 +66,11 @@ def main():
 	if options.verbose:
 		sys.stdout.write('Calling WordPress XML-RPC API.\n')
 	
-	status = wp.call(WebcamArchiveClient(image_text, meta))
+	try:
+		status = wp.call(WebcamArchiveClient(image_text, meta))
+	except Exception, e:
+		sys.stderr.write('An error occurred trying to post the data to the WordPress XML-RPC API. The exact details are as follows:\n' + str(e) + '\n')
+		return 4
 	
 	if options.verbose:
 		sys.stdout.write('Return status of WordPress XML-RPC call: ' + str(status) + '\n')
