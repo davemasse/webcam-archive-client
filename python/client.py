@@ -24,14 +24,7 @@ class WebcamArchiveClient(AuthenticatedMethod):
 	method_args = ('image','meta',)
 	return_status = WebcamArchive
 
-def main():
-	usage = "Usage: %prog [options] arg"
-	parser = OptionParser(usage)
-	parser.add_option('-f', '--file', dest='image', help='Path to image file to upload')
-	parser.add_option('-d', '--data', dest='meta', help='A pickled Python dictionary or JSON-encoded string of meta data to upload along with the image')
-	parser.add_option('-v', '--verbose', action='store_true', dest='verbose')
-	(options, args) = parser.parse_args()
-	
+def main(options, args):
 	if not hasattr(options, 'image'):
 		sys.stderr.write('Please provide an image name.\n')
 		return 1
@@ -78,4 +71,11 @@ def main():
 	return 0
 
 if __name__ == '__main__':
-	sys.exit(main())
+	usage = "Usage: %prog [options] arg"
+	parser = OptionParser(usage)
+	parser.add_option('-f', '--file', dest='image', help='Path to image file to upload')
+	parser.add_option('-d', '--data', dest='meta', help='A pickled Python dictionary or JSON-encoded string of meta data to upload along with the image')
+	parser.add_option('-v', '--verbose', action='store_true', dest='verbose')
+	(options, args) = parser.parse_args()
+	
+	sys.exit(main(options, args))
