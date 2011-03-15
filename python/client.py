@@ -34,7 +34,7 @@ def main(options, args):
 			# Check for Python dictionary
 			if type(pickle.loads(options.meta)) == type(dict()):
 				meta = pickle.loads(options.meta)
-		except:
+		except TypeError:
 			pass
 		
 		try:
