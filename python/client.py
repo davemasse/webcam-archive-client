@@ -35,15 +35,15 @@ def main(options, args):
 			if type(pickle.loads(options.meta)) == type(dict()):
 				meta = pickle.loads(options.meta)
 		except TypeError:
-			pass
-		
-		try:
-			# Check for JSON-encoded string
-			if 'meta' not in locals():
+			if options.verbose:
+				sys.stderr.write('Assuming meta data is not a pickled dictionary.\n')
+			
+			try:
+				# Check for JSON-encoded string
 				meta = simplejson.loads(options.meta)
-		except:
-			sys.stderr.write('Please provide meta information in a valid Python dictionary or JSON format.\n')
-			return 3
+			except TypeError:
+				sys.stderr.write('Please provide meta information in a valid Python dictionary or JSON format.\n')
+				return 3
 	else:
 		meta = '{}'
 	
