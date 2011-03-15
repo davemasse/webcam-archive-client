@@ -25,11 +25,15 @@ class WebcamArchiveClient(AuthenticatedMethod):
 	return_status = WebcamArchive
 
 def main(options, args):
-	if not hasattr(options, 'image'):
+	if options.image == None:
 		sys.stderr.write('Please provide an image name.\n')
 		return 1
 	
-	if hasattr(options, 'meta'):
+	if not os.path.exists(options.image):
+		sys.stderr.write('The file provided does not exist.\n')
+		return 2
+	
+	if options.meta != None:
 		try:
 			# Check for Python dictionary
 			if type(pickle.loads(options.meta)) == type(dict()):
@@ -46,10 +50,6 @@ def main(options, args):
 				return 3
 	else:
 		meta = '{}'
-	
-	if not os.path.exists(options.image):
-		sys.stderr.write('The file provided does not exist.\n')
-		return 2
 	
 	wp = Client(settings.WP_XMLRPC_URL, settings.WP_USERNAME, settings.WP_PASSWORD)
 	
